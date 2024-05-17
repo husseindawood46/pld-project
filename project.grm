@@ -1,0 +1,77 @@
+"Name"     = 'Hussein'
+"Author"   = ' Hussein Mohmaed '
+"Version"  = 'Hussein V1.1'
+"About"    = 'It is a simple programming language called Hussein based on some simple rules. This is the first version of this language and will be updated in the next.'
+           
+         "Start Symbol" = <program>
+
+! --------------------Terminal-----------------------------
+Id= [_]|{letter}{Alphanumeric}*
+Digit =('+'|'-')?{digit}+('.'{digit}+)?
+
+! ---------------------Rules----------------------------
+
+<program> ::= 'Hello'<statment_list>|<method>'Bye'
+           
+!----------There is no declaration in this programming language-----------
+           
+<statment_list> ::= <concept>
+          |<concept><statment_list>
+          |<method call>
+          |<method>
+             
+<concept>::= <assign>
+          |<if_stmt> 
+          |<for>
+          
+<assign> ::= <id>'='<expretion>';'
+          |<digit>'='<expretion>';'
+          
+         
+<id> ::=Id
+    
+<expretion>::=<expretion>'+'<term>
+           |<expretion>'-'<term>
+            |<term>
+         
+<term> ::=<term>'*'<factor> 
+        |<term>'/'<factor>
+        |<factor>
+        
+<factor> ::=<factor>'^'<exp>
+          |<exp>
+          
+<exp>::='('<expretion>')'
+         |<id> 
+         |<digit>      
+       
+<digit> ::=Digit 
+  
+          
+     
+! ---------------------if stmt ----------------------------
+<if_stmt>::=if '('<cond>')' Start <statment_list> ';'
+          | if '('<cond>')' Start <statment_list> ';' else <statment_list> 
+          
+<cond> ::=<expretion><op><expretion>
+        
+<op> ::= '<'|'>'|'=='|'!='
+      
+! ---------------------for loop ----------------------------
+
+<for>::=for'['id';'<cond>';'<step>']'':'<statment_list>'end for'
+              
+<step> ::= '--'<id>
+        |<id>'--'
+        |<id>'++'
+        |'++'<id>
+        |<assign> 
+
+!-----------------------method------------------------------------
+<method>::= function <name method> '('<assign>')' '{{' <statment_list> '}}'
+         | function <name method> '('')' '{{' <statment_list> '}}'
+        
+<name method> ::= <id>
+               
+<method call>::=function 'call' <name method> '('')'
+             |function 'call' <name method> '('<digit>')'
